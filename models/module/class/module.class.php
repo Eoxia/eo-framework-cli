@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class of "Module" module.
  */
 class Module_Class extends \eoxia\Singleton_Util {
+	protected function construct() {}
 }
 
 Module_Class::g();
