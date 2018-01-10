@@ -1,6 +1,6 @@
 {
   "name": "eo-framework-cli",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Generate WordPress plugin with EO-Framework.",
   "main": "./lib/index.js",
   "bin": {
