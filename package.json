@@ -1,0 +1,32 @@
+{
+  "name": "eo-framework-cli",
+  "version": "0.1.9",
+  "description": "Generate WordPress plugin with EO-Framework.",
+  "main": "./lib/index.js",
+	"bin": {
+		"eo-framework-cli": "./bin/index.js"
+	},
+  "scripts": {
+    "test": "test"
+  },
+  "dependencies": {
+    "commander": "2.12.2",
+    "node-run-cmd": "1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eoxia-jimmy/eo-framework-cli.git"
+  },
+  "keywords": [
+    "eo-framework",
+    "wordpress",
+    "cli",
+    "eo-framework-cli"
+  ],
+  "author": "Eoxia",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/eoxia-jimmy/eo-framework-cli/issues"
+  },
+  "homepage": "https://github.com/eoxia-jimmy/eo-framework-cli#readme"
+}
