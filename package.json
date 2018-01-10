@@ -1,17 +1,18 @@
 {
   "name": "eo-framework-cli",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Generate WordPress plugin with EO-Framework.",
   "main": "./lib/index.js",
-	"bin": {
-		"eo-framework-cli": "./bin/index.js"
-	},
+  "bin": {
+    "eo-framework-cli": "./bin/index.js"
+  },
   "scripts": {
     "test": "test"
   },
   "dependencies": {
     "commander": "2.12.2",
-    "node-run-cmd": "1.0.1"
+    "node-run-cmd": "1.0.1",
+    "ncp": "2.0.0"
   },
   "repository": {
     "type": "git",

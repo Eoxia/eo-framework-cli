@@ -1,0 +1,10 @@
+{
+	"name": "Module",
+	"slug": "module",
+	"version": "0.1.0",
+	"path": "module/module",
+	"dependencies": {
+		"class": {},
+		"action": {}
+	}
+}
