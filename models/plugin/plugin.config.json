@@ -1,0 +1,9 @@
+{
+	"name": "{{plugin_name}}",
+	"slug": "{{plugin_name | lowercase | underscore}}",
+	"modules": [
+		"core/core.config.json",
+		"modules/hello-world/hello_world.config.json"
+	],
+	"version": "0.1.0"
+}
