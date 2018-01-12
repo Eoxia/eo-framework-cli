@@ -104,14 +104,16 @@ const NewCommand = {
 	 * @return {void}
 	 */
 	gitAddEOFramework: function() {
-		nrc.run('git init && git submodule add https://github.com/Eoxia/eo-framework core/external/eo-framework', options).then((exitCodes) => {
-			this.replaceValueInFiles();
-			this.renameFiles();
+		nrc.run('git init', options).then((exitCodes) => {
+			nrc.run('git init && git submodule add https://github.com/Eoxia/eo-framework core/external/eo-framework', options).then((exitCodes) => {
+				this.replaceValueInFiles();
+				this.renameFiles();
 
-			console.log('Plugin generated: ' + this.pluginPath + '/' + this.pluginName);
+				console.log('Plugin generated: ' + this.pluginPath + '/' + this.pluginName);
 
-		}, function(err) {
-			console.log(err);
+			}, function(err) {
+				console.log(err);
+			});
 		});
 	},
 
