@@ -104,7 +104,7 @@ const NewCommand = {
 	 * @return {void}
 	 */
 	gitAddEOFramework: function() {
-		nrc.run('git submodule add https://github.com/Eoxia/eo-framework core/external/eo-framework', options).then(function(exitCodes) {
+		nrc.run('git submodule add https://github.com/Eoxia/eo-framework core/external/eo-framework', options).then((exitCodes) => {
 			this.replaceValueInFiles();
 			this.renameFiles();
 
