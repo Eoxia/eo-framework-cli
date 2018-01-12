@@ -91,10 +91,27 @@ const NewCommand = {
 			}
 			this.pluginPath = options.cwd;
 
+			this.gitAddEOFramework();
+		});
+	},
+
+	/**
+	 * Git add submodule EOFramework
+	 *
+	 * @since 0.1.0
+	 * @version 0.2.0
+	 *
+	 * @return {void}
+	 */
+	gitAddEOFramework: function() {
+		nrc.run('git submodule add https://github.com/Eoxia/eo-framework core/external/eo-framework', options).then(function(exitCodes) {
 			this.replaceValueInFiles();
 			this.renameFiles();
 
 			console.log('Plugin generated: ' + this.pluginPath + '/' + this.pluginName);
+
+		}, function(err) {
+			console.log(err);
 		});
 	},
 
