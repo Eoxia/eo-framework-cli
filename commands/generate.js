@@ -17,7 +17,7 @@ var options = {
 	cwd: '',
 };
 
-const NewCommand = {
+const Generate = {
 
 	/**
 	 * Absolue terminal path.
@@ -134,4 +134,4 @@ const NewCommand = {
 	}
 };
 
-exports.cmd = NewCommand;
+exports.cmd = Generate;
