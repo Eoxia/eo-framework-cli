@@ -1,15 +1,15 @@
 <?php
 /**
- * Main view of "Module" module.
+ * Main view of {{module_name}} module.
  *
  * @author You <you@mail>
  * @since 0.1.0
  * @version 0.1.0
  * @copyright 2017+
- * @package my_plugin
+ * @package {{plugin_name | underscore}}
  */
 
-namespace my_plugin;
+namespace {{plugin_name | underscore | lowercase}};
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

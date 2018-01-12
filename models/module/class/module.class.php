@@ -1,25 +1,25 @@
 <?php
 /**
- * Class of "Module" module.
+ * Class of {{module_name}} module.
  *
  * @author You <you@mail>
  * @since 0.1.0
  * @version 0.1.0
  * @copyright 2017+
- * @package my_plugin
+ * @package {{plugin_name | underscore}}
  */
 
-namespace my_plugin;
+namespace {{plugin_name | underscore | lowercase}};
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Class of "Module" module.
+ * Class of {{module_name}} module.
  */
-class Module_Class extends \eoxia\Singleton_Util {
+class {{module_name | tolowercase | firstcharuppercase | underscore}}_Class extends \eoxia\Singleton_Util {
 	protected function construct() {}
 }
 
-Module_Class::g();
+{{module_name | tolowercase | firstcharuppercase | underscore}}_Class::g();

@@ -1,0 +1,13 @@
+{
+	"filesToParse": [
+		"module.config.json",
+		"action/module.action.php",
+		"class/module.class.php",
+		"view/main.view.php"
+	],
+	"filesToRename": [
+		"module.config.json",
+		"action/module.action.php",
+		"class/module.class.php"
+	]
+}

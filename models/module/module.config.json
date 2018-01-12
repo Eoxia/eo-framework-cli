@@ -1,8 +1,8 @@
 {
-	"name": "Module",
-	"slug": "module",
+	"name": "{{module_name}}",
+	"slug": "{{module_name | tolowercase | underscore }}",
 	"version": "0.1.0",
-	"path": "module/module",
+	"path": "modules/{{module_name | tolowercase | underscore }}",
 	"dependencies": {
 		"class": {},
 		"action": {}

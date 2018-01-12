@@ -1,24 +1,24 @@
 <?php
 /**
- * Action of "Module" module.
+ * Action of {{module_name}} module.
  *
  * @author You <you@mail>
  * @since 0.1.0
  * @version 0.1.0
  * @copyright 2017+
- * @package my_plugin
+ * @package {{plugin_name | underscore}}
  */
 
-namespace my_plugin;
+namespace {{plugin_name | underscore | lowercase}};
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Action of "Module" module.
+ * Action of {{module_name}} module.
  */
-class Module_Action {
+class {{module_name | tolowercase | firstcharuppercase | underscore}}_Action {
 
 	/**
 	 * Constructor
@@ -29,4 +29,4 @@ class Module_Action {
 	public function __construct() {}
 }
 
-new Module_Action();
+new {{module_name | tolowercase | firstcharuppercase | underscore}}_Action();

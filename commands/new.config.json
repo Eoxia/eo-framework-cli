@@ -5,5 +5,9 @@
 		"core/action/core.action.php",
 		"modules/hello-world/action/hello-world.action.php",
 		"modules/hello-world/view/main.view.php"
+	],
+	"filesToRename": [
+		"plugin.php",
+		"plugin.config.json"
 	]
 }

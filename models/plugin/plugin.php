@@ -10,7 +10,7 @@ License:
 License URI:
 */
 
-namespace {{plugin_name | underscore | lowercase }};
+namespace {{plugin_name | underscore | lowercase}};
 
 DEFINE( 'PLUGIN_{{plugin_name | underscore | uppercase}}_PATH', realpath( plugin_dir_path( __FILE__ ) ) . '/' );
 DEFINE( 'PLUGIN_{{plugin_name | underscore | uppercase}}_URL', plugins_url( basename( __DIR__ ) ) . '/' );

@@ -1,15 +1,16 @@
 /**
- * Create new WordPress plugin with EO-Framework.
+ * Generate module.
  *
  * @since 0.1.0
  * @version 0.2.0
  */
 "use strict";
 
-const nrc  = require('node-run-cmd');
-const file = require('../lib/file');
-const fs   = require('fs');
-const ncp  = require('ncp').ncp;
+const nrc    = require('node-run-cmd');
+const file   = require('../lib/file');
+const fs     = require('fs');
+const ncp    = require('ncp').ncp;
+const plugin = require('../lib/plugin');
 
 // Used by NRC.
 var options = {
@@ -33,6 +34,13 @@ const NewCommand = {
 	pluginName: '',
 
 	/**
+	 * The module name.
+	 *
+	 * @type {string}
+	 */
+	moduleName: '',
+
+	/**
 	 * The absolute path to the cloned plugin
 	 *
 	 * @type {string}
@@ -40,7 +48,14 @@ const NewCommand = {
 	 pluginPath: '',
 
 	/**
-	 * Execute create plugin.
+	 * The absolute path to the cloned module
+	 *
+	 * @type {string}
+	 */
+	 modulePath: '',
+
+	/**
+	 * Execute create module.
 	 *
 	 * @since 0.1.0
 	 * @version 0.2.0
@@ -49,12 +64,13 @@ const NewCommand = {
 	 * @param  {string} pluginName The plugin name.
 	 * @return {void}
 	 */
-	run: function(pathCLI, pluginName) {
+	run: function(pathCLI, pluginName, moduleName) {
 		this.pathCLI    = pathCLI;
 		this.pluginName = pluginName;
+		this.moduleName = moduleName;
 		options.cwd     = process.cwd().replace( /\\/g, '/');
 
-		this.createPluginDir();
+		this.cpModule();
 	},
 
 	/**
@@ -65,36 +81,17 @@ const NewCommand = {
 	 *
 	 * @return {void}
 	 */
-	createPluginDir: function() {
-		nrc.run('mkdir ' + this.pluginName, options).then((exitCodes) => {
-			options.cwd += "/" + this.pluginName;
-			options.cwd  = options.cwd.replace( '\\', '/' );
-
-			this.gitCloneFrameworkStarter();
-		}, function(err) {
-			console.log('Command failed to run with error: ', err);
-		});
-	},
-
-	/**
-	 * Copy ./models/plugin in the current CLI path.
-	 *
-	 * @since 0.1.0
-	 * @version 0.2.0
-	 *
-	 * @return {void}
-	 */
-	gitCloneFrameworkStarter: function() {
-		ncp(this.pathCLI + '/models/plugin/', options.cwd, (err) => {
+	cpModule: function() {
+		ncp(this.pathCLI + '/models/module/', options.cwd + "/modules/" + this.moduleName, (err) => {
 			if (err) {
 				return console.error(err);
 			}
 			this.pluginPath = options.cwd;
+			this.modulePath = options.cwd + "/modules/" + this.moduleName;
 
 			this.replaceValueInFiles();
 			this.renameFiles();
-
-			console.log('Plugin generated: ' + this.pluginPath + '/' + this.pluginName);
+			console.log('Plugin generated: ' + this.modulePath + '/' + this.moduleName);
 		});
 	},
 
@@ -107,14 +104,16 @@ const NewCommand = {
 	 * @return {void}
 	 */
 	replaceValueInFiles: function() {
-		var newConfig = fs.readFileSync( this.pathCLI + "/commands/new.config.json", 'utf8' );
+		var newConfig = fs.readFileSync( this.pathCLI + "/commands/generate.config.json", 'utf8' );
 		newConfig     = JSON.parse(newConfig);
 
 		for (var key in newConfig.filesToParse) {
-			newConfig.filesToParse[key] = this.pluginPath + '/' + newConfig.filesToParse[key];
+			newConfig.filesToParse[key] = this.modulePath + '/' + newConfig.filesToParse[key];
 		}
 
 		file.openListFileAndOverwrite(newConfig.filesToParse, 'plugin_name', this.pluginName);
+		file.openListFileAndOverwrite(newConfig.filesToParse, 'module_name', this.moduleName);
+		plugin.AddModuleInMainConf(this.pluginPath + "/" + this.pluginName + ".config.json", this.moduleName);
 	},
 
 	/**
@@ -126,11 +125,11 @@ const NewCommand = {
 	 * @return {void}
 	 */
 	renameFiles: function() {
-		var newConfig = fs.readFileSync( this.pathCLI + "/commands/new.config.json", 'utf8' );
+		var newConfig = fs.readFileSync( this.pathCLI + "/commands/generate.config.json", 'utf8' );
 		newConfig     = JSON.parse(newConfig);
 
 		for (var key in newConfig.filesToRename) {
-			fs.renameSync(this.pluginPath + '/' + newConfig.filesToRename[key], this.pluginPath + '/' + newConfig.filesToRename[key].replace(/plugin/g, this.pluginName));
+			fs.renameSync(this.modulePath + '/' + newConfig.filesToRename[key], this.modulePath + '/' + newConfig.filesToRename[key].replace(/module/g, this.moduleName));
 		}
 	}
 };
