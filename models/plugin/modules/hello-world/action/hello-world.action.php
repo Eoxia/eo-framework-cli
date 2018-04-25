@@ -48,7 +48,7 @@ class Hello_World_Action {
 	 * @version 0.1.0
 	 */
 	public function callback_add_menu_page() {
-		\eoxia\View_Util::exec( '{{plugin_name | lowercase | underscore}}', 'hello_world', 'main' );
+		\eoxia\View_Util::exec( '{{plugin_name | lowercase}}', 'hello_world', 'main' );
 	}
 }
 
