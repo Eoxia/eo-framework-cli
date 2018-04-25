@@ -1,6 +1,6 @@
 {
 	"name": "{{plugin_name}}",
-	"slug": "{{plugin_name | lowercase | underscore}}",
+	"slug": "{{plugin_name | lowercase}}",
 	"modules": [
 		"core/core.config.json",
 		"modules/hello-world/hello_world.config.json"
