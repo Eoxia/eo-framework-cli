@@ -46,6 +46,14 @@ const GenerateModel = {
 		 * @type {string}
 		 */
 		 pluginPath: '',
+
+		/**
+		 * Model type.
+		 *
+		 * @type {string}
+		 */
+		type: '',
+
 		/**
 		 * Execute create module.
 		 *
@@ -56,11 +64,16 @@ const GenerateModel = {
 		 * @param  {string} pluginName The plugin name.
 		 * @return {void}
 		 */
-		run: function(pathCLI, pluginName, modelName) {
+		run: function(pathCLI, pluginName, modelName, type, forcePath) {
 			this.pathCLI    = pathCLI;
 			this.pluginName = pluginName;
 			this.modelName  = modelName;
+			this.type       = type;
 			options.cwd     = process.cwd().replace( /\\/g, '/');
+
+			if ( forcePath ) {
+				options.cwd += '/modules/' + forcePath;
+			}
 
 			this.mkdirFolder();
 		},
@@ -76,12 +89,12 @@ const GenerateModel = {
 		},
 
 		cpFiles: function() {
-			ncp(this.pathCLI + '/models/model/model.class.php', options.cwd + '/class/' + this.modelName + '.class.php', (err) => {
+			ncp(this.pathCLI + '/models/model/model.' + this.type + '.class.php', options.cwd + '/class/' + this.modelName + '.class.php', (err) => {
 				if (err) {
 					return console.error(err);
 				}
 
-				ncp(this.pathCLI + '/models/model/model.model.php', options.cwd + '/model/' + this.modelName + '.model.php', (err) => {
+				ncp(this.pathCLI + '/models/model/model.' + this.type + '.model.php', options.cwd + '/model/' + this.modelName + '.model.php', (err) => {
 					if (err) {
 						return console.error(err);
 					}

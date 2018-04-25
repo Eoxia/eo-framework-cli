@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
 * Handle {{model_name}}
 */
-class {{model_name | tolowercase | firstcharuppercase | underscore}}_Class extends \eoxia\Post_Class {
+class {{model_name | tolowercase | firstcharuppercase | underscore}}_Class extends \eoxia\Comment_Class {
 
 	/**
 	 * Model name @see ../model/*.model.php.
@@ -32,7 +32,7 @@ class {{model_name | tolowercase | firstcharuppercase | underscore}}_Class exten
 	 *
 	 * @var string
 	 */
-	protected $post_type = '{{model_name | underscore | lowercase}}';
+	protected $type = '{{model_name | underscore | lowercase}}';
 
 	/**
 	 * La clé principale du modèle

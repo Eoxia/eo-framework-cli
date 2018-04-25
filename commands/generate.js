@@ -64,13 +64,15 @@ const Generate = {
 	 * @param  {string} pluginName The plugin name.
 	 * @return {void}
 	 */
-	run: function(pathCLI, pluginName, moduleName) {
+	run: function(pathCLI, pluginName, moduleName, cb) {
 		this.pathCLI    = pathCLI;
 		this.pluginName = pluginName;
 		this.moduleName = moduleName;
 		options.cwd     = process.cwd().replace( /\\/g, '/');
 
-		this.cpModule();
+		this.cpModule(() => {
+			cb();
+		});
 	},
 
 	/**
@@ -81,7 +83,7 @@ const Generate = {
 	 *
 	 * @return {void}
 	 */
-	cpModule: function() {
+	cpModule: function(cb) {
 		ncp(this.pathCLI + '/models/module/', options.cwd + "/modules/" + this.moduleName, (err) => {
 			if (err) {
 				return console.error(err);
@@ -91,7 +93,9 @@ const Generate = {
 
 			this.replaceValueInFiles();
 			this.renameFiles();
-			console.log('Plugin generated: ' + this.modulePath + '/' + this.moduleName);
+			console.log('Module generated: ' + this.modulePath + '/' + this.moduleName);
+
+			cb();
 		});
 	},
 

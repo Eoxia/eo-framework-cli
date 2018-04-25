@@ -18,9 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
 * Handle {{model_name}}
 */
-class {{model_name | tolowercase | firstcharuppercase | underscore}}_Model extends \eoxia\Post_Model {
-	public function __construct( $object ) {
+class {{model_name | tolowercase | firstcharuppercase | underscore}}_Model extends \eoxia\Comment_Model {
+	public function __construct( $object, $req_method = null ) {
 
-		parent::__construct( $object );
+		parent::__construct( $object, $req_method );
 	}
 }
