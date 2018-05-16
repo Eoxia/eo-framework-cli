@@ -32,7 +32,7 @@ class {{model_name | tolowercase | firstcharuppercase | underscore}}_Class exten
 	 *
 	 * @var string
 	 */
-	protected $post_type = '{{model_name | underscore | lowercase}}';
+	protected $type = '{{model_name | underscore | lowercase}}';
 
 	/**
 	 * La clé principale du modèle
